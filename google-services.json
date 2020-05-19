@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "330447133643",
+    "firebase_url": "https://gc-hackathon-2020.firebaseio.com",
+    "project_id": "gc-hackathon-2020",
+    "storage_bucket": "gc-hackathon-2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330447133643:android:2d051b65bd182134b0b44e",
+        "android_client_info": {
+          "package_name": "com.goldencomm.hackthon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "330447133643-5o9dch0obf8oo7fl9k890cetck3k5h9n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV18WbIMPI_ONeXZ-SF0_SkDFSyMOyu10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "330447133643-5o9dch0obf8oo7fl9k890cetck3k5h9n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "330447133643-h9er2m1s1kg24j7cg3t3vvc6h5bebqbb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.goldencomm.hackthon"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

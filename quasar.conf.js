@@ -8,6 +8,86 @@
 /* eslint-env node */
 
 module.exports = function (ctx) {
+  const fs = require('fs')
+  const et = require('elementtree');
+  const git = require('git-utils');
+  const { execSync } = require('child_process');
+
+  const checkBranch = (params) => {
+    const repo = git.open('.');
+    const head = repo.getHead();
+    if (head !== 'refs/heads/master') {
+      console.warn('Please make builds only on master branch');
+    }
+  };
+  const incrementVersion = (params) => {
+    let ios = '1.0.0';
+    let android = '10000';
+    if (fs.existsSync('version.json')) {
+      let content = fs.readFileSync('version.json');
+      content = JSON.parse(content);
+      ios = content.ios;
+      android = content.android;
+    }
+
+    switch (true) {
+      case ctx.target.ios:
+        ios = ios.split('.');
+        ios.push((parseInt(ios.pop()) + 1).toString());
+        ios = ios.join('.');
+        break;
+      case ctx.target.android:
+        android = (parseInt(android) + 1).toString();
+        break;
+      default:
+        break;
+    }
+
+    console.log(`Increment version ios: ${ios}, android: ${android}`);
+    fs.writeFileSync('version.json', JSON.stringify({
+      ios: ios,
+      android: android
+    }));
+  };
+  const saveCurrentVersion = (params) => {
+    if (!ctx.mode.cordova) { return; }
+
+    const filePath = 'src-cordova/config.xml';
+    const version = require('./version.json');
+    const doc = et.parse(fs.readFileSync(filePath, 'utf-8'))
+    const root = doc.getroot()
+
+    root.set('android-versionCode', version.android);
+    root.set('ios-CFBundleVersion', version.ios);
+
+    const content = doc.write({ indent: 4 })
+    fs.writeFileSync(filePath, content, 'utf8')
+    console.log(`Updated version ios: ${version.ios}, android: ${version.android}`);
+  };
+  const copyFirebaseConf = (params) => {
+    if (ctx.mode.cordova) {
+      let distDir = 'src-cordova/platforms/ios/Quasar App/Resources/GoogleService-Info.plist';
+      let file = 'GoogleService-Info.plist';
+      if (ctx.target.android) {
+        file = 'google-services.json';
+        distDir = 'src-cordova/platforms/android/app/google-services.json';
+      }
+
+      const exists = fs.existsSync(file)
+      if (exists) {
+        fs.copyFileSync(file, distDir);
+      }
+    }
+  };
+  const pushConfigChanges = (params) => {
+    if (!ctx.mode.cordova) { return }
+    execSync('git reset HEAD');
+    execSync('git add src-cordova/config.xml');
+    execSync('git add version.json');
+    execSync("git commit -m 'Increment Build Number'");
+    execSync("git push");
+  };
+
     return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
@@ -78,6 +158,17 @@ module.exports = function (ctx) {
 
       // Options below are automatically set depending on the env, set them if you want to override
       // extractCSS: false,
+
+      afterDev: copyFirebaseConf,
+      beforeBuild: (params) => {
+        checkBranch(params);
+        incrementVersion(params);
+        saveCurrentVersion(params);
+      },
+      afterBuild: (params) => {
+        copyFirebaseConf(params);
+        pushConfigChanges(params);
+      },
 
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
       extendWebpack (cfg) {
@@ -154,7 +245,7 @@ cfg.module.rules.push({
     // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
-      id: 'org.cordova.quasar.app'
+      id: 'com.goldencomm.hackthon'
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor

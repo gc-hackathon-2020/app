@@ -1,5 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/messaging'
+import 'firebase/performance'
+import 'firebase/analytics'
 import { actionInitializeApp } from 'src/store/modules/firebase'
 
 // "async" is optional;
