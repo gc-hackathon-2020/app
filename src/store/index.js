@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import example from './module-example'
+import firebase from 'src/store/modules/firebase'
+import {instanceWeb as webFirebase} from 'src/store/modules/firebase'
+import { isWebDeploy } from 'src/static'
 
 Vue.use(Vuex)
 
@@ -14,16 +16,14 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
-export default function (/* { ssrContext } */) {
-  const Store = new Vuex.Store({
+export default function () {
+  return new Vuex.Store({
     modules: {
-      // example
+      firebase: isWebDeploy ? webFirebase : firebase
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode only
     strict: process.env.DEV
   })
-
-  return Store
 }
