@@ -11,6 +11,9 @@
     "serve@spa": "./node_modules/.bin/quasar dev",
     "serve@ios": "./node_modules/.bin/quasar dev -m ios --ide",
     "serve@android": "./node_modules/.bin/quasar dev -m android --ide",
+    "build@ios": "./node_modules/.bin/quasar build -m ios --skip-pkg --ide",
+    "build@android": "./node_modules/.bin/quasar build -m android --skip-pkg --ide",
+    "build@spa": "./node_modules/.bin/quasar build -m spa",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ./",
     "test": "echo \"No test specified\" && exit 0"
   },

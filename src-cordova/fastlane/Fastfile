@@ -1,0 +1,43 @@
+platform :ios do
+    lane :firebase do
+        ensure_env_vars(
+          env_vars: ['TEAM_IDCORDOVA_IOS_TEAM_ID', 'IOS_APP_ID', 'GROUP_IOS']
+        )
+
+        cordova(
+            platform: 'ios',
+            release: false,
+            type: 'development',
+            team_id: ENV['TEAM_IDCORDOVA_IOS_TEAM_ID']
+        )
+
+        firebase_app_distribution(
+            app: ENV['IOS_APP_ID'],
+            firebase_cli_path: './node_modules/.bin/firebase',
+            groups: ENV['GROUP_IOS'],
+            ipa_path: './platforms/ios/build/device/Quasar App.ipa'
+        )
+    end
+end
+
+platform :android do
+    lane :firebase do
+        ensure_env_vars(
+          env_vars: ['JAVA_HOME', 'ANDROID_APP_ID', 'GROUP_ANDROID']
+        )
+
+        cordova(
+            platform: 'android',
+            release: false,
+            type: 'development',
+        )
+
+        firebase_app_distribution(
+            app: ENV['ANDROID_APP_ID'],
+            firebase_cli_path: './node_modules/.bin/firebase',
+            groups: ENV['GROUP_ANDROID'],
+            apk_path: './platforms/android/app/build/outputs/apk/debug/app-debug.apk',
+            debug: true,
+        )
+    end
+end
