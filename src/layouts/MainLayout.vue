@@ -35,7 +35,6 @@
             <span v-if="!avatar.image">{{ avatar.initials }}</span>
           </q-avatar>
         </q-btn>
-
       </q-toolbar>
     </q-header>
 
@@ -43,7 +42,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      content-class="body--light flex column"
+      content-class="body--light flex column no-wrap"
     >
       <q-list>
         <q-item-label
@@ -59,11 +58,16 @@
 
       </q-list>
 
-      <div @click="$q.dark.toggle()" class="q-mt-auto q-mb-xl flex justify-center">
-        <div class="q-mr-sm">Theme color switch</div>
-        <i class="fas fa-sun icon-sun" v-if="$q.dark.isActive"></i>
-        <i class="fas fa-moon icon-moon" v-else @click="$q.dark.toggle()"></i>
-      </div>
+        <div class="q-pa-md q-mt-auto q-mb-lg flex justify-center">
+          <q-btn @click="$q.dark.toggle()" class="flex justify-center">
+            <div class="q-mr-sm">
+              <span v-if="$q.dark.isActive">Light Mode</span>
+              <span v-else>Dark Mode</span>
+            </div>
+            <i class="fas fa-sun icon-sun" v-if="$q.dark.isActive"></i>
+            <i class="fas fa-moon icon-moon" v-else @click="$q.dark.toggle()"></i>
+          </q-btn>
+        </div>
 
     </q-drawer>
 
