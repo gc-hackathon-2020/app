@@ -48,7 +48,6 @@
       <q-list>
         <q-item-label
           header
-          class="text-grey-8"
         >
           Essential Links
         </q-item-label>
@@ -93,6 +92,18 @@
       leftDrawerOpen: false,
       themeColor: 'Dark',
       essentialLinks: [
+        {
+          title: "Friends List",
+          caption: 'View your list of friends',
+          icon: 'group',
+          link: '/friends'
+        },
+        {
+          title: 'My Account',
+          caption: 'Adjust your account settings',
+          icon: 'settings',
+          link: '/settings'
+        },
         {
           title: 'Docs',
           caption: 'quasar.dev',
@@ -140,12 +151,6 @@
           caption: 'Online & Offline Friends',
           icon: 'people',
           link: '/friends'
-        },
-        {
-          title: 'Settings',
-          caption: 'Set your account',
-          icon: 'settings',
-          link: '/settings'
         }
       ]
     }

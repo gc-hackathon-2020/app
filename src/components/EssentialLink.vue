@@ -2,7 +2,9 @@
   <q-item
     clickable
     tag="a"
-    :href="link"
+    :target="link.startsWith('/') ? _blank : _self "
+    :to="link.startsWith('/') ? link : undefined"
+    :href="!link.startsWith('/') ? link : undefined"
   >
     <q-item-section
       v-if="icon"
