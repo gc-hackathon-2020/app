@@ -5,5 +5,6 @@
   "projectId": "gc-hackathon-2020",
   "storageBucket": "gc-hackathon-2020.appspot.com",
   "messagingSenderId": "330447133643",
-  "appId": "1:330447133643:web:8ba473b4df6cd9d3b0b44e"
+  "appId": "1:330447133643:web:8ba473b4df6cd9d3b0b44e",
+  "vapidKey": "BCPBJlPC73hpr10C3ir66klrdnQy-LR238SPOT8ahpO6Szh01qX3j5G1CzSghDbErjcXVidQt33Y8lCNDJMw0pI"
 }

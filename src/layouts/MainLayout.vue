@@ -12,8 +12,24 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          <q-btn flat to="/">
+            GC Hackathon App
+          </q-btn>
         </q-toolbar-title>
+
+        <q-btn
+          round
+          flat
+          to="/settings"
+        >
+          <q-avatar
+            v-bind:color="avatar.image ? 'white' : avatar.color"
+            to="/settings"
+          >
+            <img v-if="avatar.image" :src="avatar.image">
+            <span v-if="!avatar.image">{{ avatar.initials }}</span>
+          </q-avatar>
+        </q-btn>
 
         <nav>
           <i class="fas fa-sun icon-sun" v-if="$q.dark.isActive" @click="$q.dark.toggle()"></i>
@@ -59,55 +75,59 @@
       EssentialLink
     },
 
-    data() {
-      return {
-        nightMode: false,
-        leftDrawerOpen: false,
-        essentialLinks: [
-          {
-            title: 'Docs',
-            caption: 'quasar.dev',
-            icon: 'school',
-            link: 'https://quasar.dev'
-          },
-          {
-            title: 'Github',
-            caption: 'github.com/quasarframework',
-            icon: 'code',
-            link: 'https://github.com/quasarframework'
-          },
-          {
-            title: 'Discord Chat Channel',
-            caption: 'chat.quasar.dev',
-            icon: 'chat',
-            link: 'https://chat.quasar.dev'
-          },
-          {
-            title: 'Forum',
-            caption: 'forum.quasar.dev',
-            icon: 'record_voice_over',
-            link: 'https://forum.quasar.dev'
-          },
-          {
-            title: 'Twitter',
-            caption: '@quasarframework',
-            icon: 'rss_feed',
-            link: 'https://twitter.quasar.dev'
-          },
-          {
-            title: 'Facebook',
-            caption: '@QuasarFramework',
-            icon: 'public',
-            link: 'https://facebook.quasar.dev'
-          },
-          {
-            title: 'Quasar Awesome',
-            caption: 'Community Quasar projects',
-            icon: 'favorite',
-            link: 'https://awesome.quasar.dev'
-          }
-        ]
-      }
+  data () {
+    return {
+      avatar: {
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKoRLYn5rzEM_7lsafW2w-2k88jKxDfz4ya6hthVqdUyOCOGyx&usqp=CAU",
+          initials: "HD",
+          color: "pink"
+      },
+      leftDrawerOpen: false,
+      essentialLinks: [
+        {
+          title: 'Docs',
+          caption: 'quasar.dev',
+          icon: 'school',
+          link: 'https://quasar.dev'
+        },
+        {
+          title: 'Github',
+          caption: 'github.com/quasarframework',
+          icon: 'code',
+          link: 'https://github.com/quasarframework'
+        },
+        {
+          title: 'Discord Chat Channel',
+          caption: 'chat.quasar.dev',
+          icon: 'chat',
+          link: 'https://chat.quasar.dev'
+        },
+        {
+          title: 'Forum',
+          caption: 'forum.quasar.dev',
+          icon: 'record_voice_over',
+          link: 'https://forum.quasar.dev'
+        },
+        {
+          title: 'Twitter',
+          caption: '@quasarframework',
+          icon: 'rss_feed',
+          link: 'https://twitter.quasar.dev'
+        },
+        {
+          title: 'Facebook',
+          caption: '@QuasarFramework',
+          icon: 'public',
+          link: 'https://facebook.quasar.dev'
+        },
+        {
+          title: 'Quasar Awesome',
+          caption: 'Community Quasar projects',
+          icon: 'favorite',
+          link: 'https://awesome.quasar.dev'
+        }
+      ]
     }
   }
+}
 </script>
