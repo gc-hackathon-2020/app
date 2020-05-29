@@ -2,7 +2,7 @@
   <q-item
     clickable
     tag="a"
-    :target="link.startsWith('/') ? '_blank' : '_self'"
+    :target="!link.startsWith('/') ? '_blank' : '_self'"
     :to="link.startsWith('/') ? link : undefined"
     :href="!link.startsWith('/') ? link : undefined"
   >

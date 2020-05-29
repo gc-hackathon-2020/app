@@ -9,6 +9,9 @@
         <img v-if="avatar.image" :src="avatar.image">
         <span v-if="!avatar.image">{{ avatar.initials }}</span>
       </q-avatar>
+      <div class="q-mt-">
+        <h3>Hello, {{user.nickname}}</h3>
+      </div>
       <div class="q-mt-sm">
         User ID: <span class="text-weight-medium">{{ user.id }}</span>
       </div>
@@ -40,6 +43,10 @@
       </template>
     </q-input>
 
+    <q-btn @click="saveNickname(user)" class="q-mt-lg" color="primary" icon="save" label="Save" />
+
+    <p class="q-mt-sm" v-show="user.saved">Account info updated</p>
+
   </q-page>
 </template>
 
@@ -49,12 +56,13 @@ export default {
     data () {
         return {
             user: {
-                nickname: "Troll",
+                nickname: localStorage.getItem('nickname') || "Troll",
                 login: "troll",
                 password: "123",
                 email: "troll@goldencomm.com",
                 id: "123",
-                isTurnedOff: false
+                isTurnedOff: false,
+                saved: false
             },
             avatar: {
                 image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKoRLYn5rzEM_7lsafW2w-2k88jKxDfz4ya6hthVqdUyOCOGyx&usqp=CAU",
@@ -62,6 +70,14 @@ export default {
                 color: "pink"
             }
         }
+    },
+    methods: {
+      saveNickname(user) {
+        console.log('saving', user.nickname);
+        localStorage.setItem('nickname', user.nickname)
+        user.saved = true;
+        setTimeout(() => user.saved = false, 1000);
+      }
     }
 }
 </script>

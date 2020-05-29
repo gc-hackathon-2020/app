@@ -3,13 +3,10 @@
     <div class="components">
       <article>
         <img class="article-image" src="../assets/cat.jpg" alt="">
+        <h1>Welcome to <strong>G</strong>lobal <strong>C</strong>hatter</h1>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-          PageMaker including versions of Lorem Ipsum.
+          This is a messaging service created by the <a href="https://www.goldencomm.com" target="_blank">GoldenComm</a> team
+          that allows users to chat with other users in their nearby location.
         </p>
       </article>
     </div>
