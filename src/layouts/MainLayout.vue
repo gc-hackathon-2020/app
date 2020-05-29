@@ -61,6 +61,7 @@
           :key="link.title"
           v-bind="link"
         />
+
       </q-list>
     </q-drawer>
 
@@ -130,6 +131,18 @@
           caption: 'Community Quasar projects',
           icon: 'favorite',
           link: 'https://awesome.quasar.dev'
+        },
+        {
+          title: 'Friends List',
+          caption: 'Online & Offline Friends',
+          icon: 'people',
+          link: '/friends'
+        },
+        {
+          title: 'Settings',
+          caption: 'Set your account',
+          icon: 'settings',
+          link: '/settings'
         }
       ]
     }
