@@ -13,7 +13,7 @@
 
         <q-btn
           flat
-          to="/settings"
+          to="/"
         >
             <img alt="App logo"
                  width="64"
