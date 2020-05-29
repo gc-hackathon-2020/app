@@ -35,11 +35,6 @@
             <span v-if="!avatar.image">{{ avatar.initials }}</span>
           </q-avatar>
         </q-btn>
-
-        <nav>
-          <i class="fas fa-sun icon-sun" v-if="$q.dark.isActive" @click="$q.dark.toggle()"></i>
-          <i class="fas fa-moon icon-moon" v-else @click="$q.dark.toggle()"></i>
-        </nav>
       </q-toolbar>
     </q-header>
 
@@ -47,7 +42,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      content-class="bg-grey-1"
+      content-class="body--light flex column no-wrap"
     >
       <q-list>
         <q-item-label
@@ -62,6 +57,18 @@
         />
 
       </q-list>
+
+        <div class="q-pa-md q-mt-auto q-mb-lg flex justify-center">
+          <q-btn @click="$q.dark.toggle()" class="flex justify-center">
+            <div class="q-mr-sm">
+              <span v-if="$q.dark.isActive">Light Mode</span>
+              <span v-else>Dark Mode</span>
+            </div>
+            <i class="fas fa-sun icon-sun" v-if="$q.dark.isActive"></i>
+            <i class="fas fa-moon icon-moon" v-else @click="$q.dark.toggle()"></i>
+          </q-btn>
+        </div>
+
     </q-drawer>
 
     <q-page-container>
@@ -142,12 +149,6 @@
           caption: 'Community Quasar projects',
           icon: 'favorite',
           link: 'https://awesome.quasar.dev'
-        },
-        {
-          title: 'Friends List',
-          caption: 'Online & Offline Friends',
-          icon: 'people',
-          link: '/friends'
         }
       ]
     }
