@@ -36,10 +36,6 @@
           </q-avatar>
         </q-btn>
 
-        <nav>
-          <i class="fas fa-sun icon-sun" v-if="$q.dark.isActive" @click="$q.dark.toggle()"></i>
-          <i class="fas fa-moon icon-moon" v-else @click="$q.dark.toggle()"></i>
-        </nav>
       </q-toolbar>
     </q-header>
 
@@ -47,7 +43,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      content-class="bg-grey-1"
+      content-class="body--light flex column"
     >
       <q-list>
         <q-item-label
@@ -63,6 +59,13 @@
         />
 
       </q-list>
+
+      <div @click="$q.dark.toggle()" class="q-mt-auto q-mb-xl flex justify-center">
+        <div class="q-mr-sm">Theme color switch</div>
+        <i class="fas fa-sun icon-sun" v-if="$q.dark.isActive"></i>
+        <i class="fas fa-moon icon-moon" v-else @click="$q.dark.toggle()"></i>
+      </div>
+
     </q-drawer>
 
     <q-page-container>
@@ -75,12 +78,11 @@
   import EssentialLink from 'components/EssentialLink'
 
   export default {
-    name: 'MainLayout',
+  name: 'MainLayout',
 
-    components: {
-      EssentialLink
-    },
-
+  components: {
+    EssentialLink
+  },
   data () {
     return {
       avatar: {
@@ -89,6 +91,7 @@
           color: "pink"
       },
       leftDrawerOpen: false,
+      themeColor: 'Dark',
       essentialLinks: [
         {
           title: 'Docs',
