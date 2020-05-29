@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
+    <q-header elevated class="bg-dark">
+      <q-toolbar class="flex justify-between">
         <q-btn
           flat
           dense
@@ -11,11 +11,31 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+        <q-btn
+          flat
+          to="/"
+        >
+            <img alt="App logo"
+                 width="64"
+                 height="64"
+                 class="q-ml-auto q-mr-auto"
+                 src="~assets/icon.png">
+        </q-btn>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn
+          round
+          flat
+          to="/settings"
+        >
+          <q-avatar
+            v-bind:color="avatar.image ? 'white' : avatar.color"
+            to="/settings"
+          >
+            <img v-if="avatar.image" :src="avatar.image">
+            <span v-if="!avatar.image">{{ avatar.initials }}</span>
+          </q-avatar>
+        </q-btn>
+
       </q-toolbar>
     </q-header>
 
@@ -23,7 +43,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      content-class="bg-grey-1"
+      content-class="body--light flex column"
     >
       <q-list>
         <q-item-label
@@ -37,28 +57,41 @@
           :key="link.title"
           v-bind="link"
         />
+
       </q-list>
+
+      <div @click="$q.dark.toggle()" class="q-mt-auto q-mb-xl flex justify-center">
+        <div class="q-mr-sm">Theme color switch</div>
+        <i class="fas fa-sun icon-sun" v-if="$q.dark.isActive"></i>
+        <i class="fas fa-moon icon-moon" v-else @click="$q.dark.toggle()"></i>
+      </div>
+
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view/>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink'
+  import EssentialLink from 'components/EssentialLink'
 
-export default {
+  export default {
   name: 'MainLayout',
 
   components: {
     EssentialLink
   },
-
   data () {
     return {
+      avatar: {
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKoRLYn5rzEM_7lsafW2w-2k88jKxDfz4ya6hthVqdUyOCOGyx&usqp=CAU",
+          initials: "HD",
+          color: "pink"
+      },
       leftDrawerOpen: false,
+      themeColor: 'Dark',
       essentialLinks: [
         {
           title: 'Docs',
@@ -101,6 +134,18 @@ export default {
           caption: 'Community Quasar projects',
           icon: 'favorite',
           link: 'https://awesome.quasar.dev'
+        },
+        {
+          title: 'Friends List',
+          caption: 'Online & Offline Friends',
+          icon: 'people',
+          link: '/friends'
+        },
+        {
+          title: 'Settings',
+          caption: 'Set your account',
+          icon: 'settings',
+          link: '/settings'
         }
       ]
     }

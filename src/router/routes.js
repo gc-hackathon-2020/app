@@ -5,10 +5,15 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') },
-      { path: 'user', component: () => import('pages/UserProfilePage.vue') }
+
+      { path: 'user', component: () => import('pages/UserProfilePage.vue') },
+
+      { path: 'settings', component: () => import('pages/AccountSettings.vue') },
+      { path: 'friends', component: () => import('pages/Friendslist.vue') },
+
     ]
   }
-]
+];
 
 // Always leave this as last one
 if (process.env.MODE !== 'ssr') {

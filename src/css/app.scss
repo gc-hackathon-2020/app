@@ -1,1 +1,94 @@
 // app global css in SCSS form
+@import url('https://use.fontawsome.com/releases/v5.8.1/css/all.css');
+
+body {
+  padding: 0;
+  margin: 0;
+
+  .app {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    width: calc(100% - 20px);
+    min-height: 100vh;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .components {
+      max-width: 768px;
+
+      nav {
+        position: relative;
+        height: 50px;
+
+        i {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 1.6rem;
+          cursor: pointer;
+        }
+
+        .icon-sun {
+          color: #FCDA5F;
+        }
+
+        .icon-moon {
+          color: #041B37;
+        }
+      }
+
+      article {
+        position: relative;
+        padding: 10px;
+        background: #fff;
+        border: 1px solid #ccc;
+
+        .article-image {
+          max-width: 100%;
+          height: auto;
+        }
+
+        p {
+          padding: 10px;
+
+          &::first-letter {
+            float: left;
+            font-size: 4rem;
+            line-height: .8;
+            padding: 0 10px 0 0;
+          }
+        }
+      }
+    }
+  }
+
+  &.body--light {
+    transition: all .5s ease-in-out;
+    color: #333;
+    background-color: #efefef;
+
+    .app {
+
+      .components {
+        max-width: 768px;
+
+      }
+    }
+  }
+
+  &.body--dark {
+    color: #efefef;
+    background-color: #333;
+
+    .app {
+      .components {
+        article {
+          background-color: #222;
+          border: 1px solid #555;
+        }
+      }
+    }
+  }
+}
