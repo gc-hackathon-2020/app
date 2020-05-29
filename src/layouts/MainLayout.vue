@@ -145,12 +145,6 @@
           caption: 'Community Quasar projects',
           icon: 'favorite',
           link: 'https://awesome.quasar.dev'
-        },
-        {
-          title: 'Friends List',
-          caption: 'Online & Offline Friends',
-          icon: 'people',
-          link: '/friends'
         }
       ]
     }
