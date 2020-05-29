@@ -35,6 +35,11 @@
             <span v-if="!avatar.image">{{ avatar.initials }}</span>
           </q-avatar>
         </q-btn>
+
+        <nav>
+          <i class="fas fa-sun icon-sun" v-if="$q.dark.isActive" @click="$q.dark.toggle()"></i>
+          <i class="fas fa-moon icon-moon" v-else @click="$q.dark.toggle()"></i>
+        </nav>
       </q-toolbar>
     </q-header>
 
@@ -60,20 +65,20 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view/>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink'
+  import EssentialLink from 'components/EssentialLink'
 
-export default {
-  name: 'MainLayout',
+  export default {
+    name: 'MainLayout',
 
-  components: {
-    EssentialLink
-  },
+    components: {
+      EssentialLink
+    },
 
   data () {
     return {
