@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
+    <q-header elevated class="bg-dark">
+      <q-toolbar class="flex justify-between">
         <q-btn
           flat
           dense
@@ -11,11 +11,16 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>
-          <q-btn flat to="/">
-            GC Hackathon App
-          </q-btn>
-        </q-toolbar-title>
+        <q-btn
+          flat
+          to="/settings"
+        >
+            <img alt="App logo"
+                 width="64"
+                 height="64"
+                 class="q-ml-auto q-mr-auto"
+                 src="~assets/icon.png">
+        </q-btn>
 
         <q-btn
           round
