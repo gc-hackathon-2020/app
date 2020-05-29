@@ -12,10 +12,24 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          <q-btn flat to="/">
+            GC Hackathon App
+          </q-btn>
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn
+          round
+          flat
+          to="/settings"
+        >
+          <q-avatar
+            v-bind:color="avatar.image ? 'white' : avatar.color"
+            to="/settings"
+          >
+            <img v-if="avatar.image" :src="avatar.image">
+            <span v-if="!avatar.image">{{ avatar.initials }}</span>
+          </q-avatar>
+        </q-btn>
       </q-toolbar>
     </q-header>
 
@@ -58,6 +72,11 @@ export default {
 
   data () {
     return {
+      avatar: {
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKoRLYn5rzEM_7lsafW2w-2k88jKxDfz4ya6hthVqdUyOCOGyx&usqp=CAU",
+          initials: "HD",
+          color: "pink"
+      },
       leftDrawerOpen: false,
       essentialLinks: [
         {
