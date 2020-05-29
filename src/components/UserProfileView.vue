@@ -2,18 +2,19 @@
   <div class="column items-center">
     <div class="user-info column items-center q-mb-xl">
       <q-avatar size="100px" color="red" text-color="white">PZ</q-avatar>
-      <h3 class="q-my-md">USERNAME</h3>
+      <h3 class="q-my-md">{{name}}</h3>
       <q-badge class="text-weight-bold " color="blue">
-        #4D96F2
+        #{{userId}}
       </q-badge>
     </div>
-    <div class="buttons-group q-mb-xl">
-      <q-btn :color="friend.colorBtn" :icon="friend.iconBtn" :label="friend.textBtn" @click="toogleFriend"/>
+    <div class="buttons-group q-mb-lg">
+      <q-btn class="q-mr-lg" :color="friend.colorBtn" :icon="friend.iconBtn" :label="friend.textBtn"
+             @click="toogleFriend"/>
       <q-btn :color="block.colorBtn" :icon="block.iconBtn" :label="block.textBtn" @click="toggleBlock"/>
     </div>
-    <div class="text-meessage">
+    <div class="text-message">
       <q-input outlined v-model="text"/>
-      <q-btn color="primary" icon-right="fas fa-paper-plane" label="Send Message"/>
+      <q-btn class="send-message-btn q-mt-lg" color="primary" icon-right="fas fa-paper-plane" label="Send Message"/>
     </div>
   </div>
 </template>
@@ -23,6 +24,8 @@
     name: 'UserProfileView',
     data() {
       return {
+        name: "John Doe",
+        userId: "3D34435",
         friend: {
           colorBtn: 'primary',
           textBtn: "Add Friend",
@@ -64,13 +67,23 @@
     padding: 8px 12px;
   }
 
-  .buttons-group, .text-meessage {
-    align-self: flex-start;
+  .q-btn {
+    width: 175px;
   }
 
-  .text-meessage {
-    flex-direction: row;
-    flex-wrap: nowrap;
+
+  .text-message {
+    display: flex;
+    flex-direction: column;
     width: 75%;
+
+  }
+
+  .send-message-btn {
+    align-self: center;
+  }
+
+  .q-field__control {
+    height: 300px;
   }
 </style>
